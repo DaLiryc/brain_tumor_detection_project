@@ -1,5 +1,7 @@
 raw_data/
+.DS_Store/
 data/
-notebooks/.DS_Store
+notebooks/.DS_Store/
 .python-version
-.DS_Store
+
+
