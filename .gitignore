@@ -1,7 +1,7 @@
 raw_data/
-.DS_Store/
+.DS_Store
 data/
-notebooks/.DS_Store/
+notebooks/.DS_Store
+notebooks/data
 .python-version
-
-
+*.keras
