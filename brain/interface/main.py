@@ -5,16 +5,16 @@ from sklearn.model_selection import train_test_split
 
 
 from brain.params import *
-from brain.ml_logic.data import load_path_label_df
-from brain.ml_logic.encoders import tumor_encoded
-from brain.ml_logic.utils import find_and_erase_duplicates
-from brain.ml_logic.preprocess import pipeline_building
-from brain.ml_logic.model import init_model, compile_model, init_densenet
+from brain.ml_logic_classification.data import load_path_label_df
+from brain.ml_logic_classification.encoders import tumor_encoded
+from brain.ml_logic_classification.utils import find_and_erase_duplicates
+from brain.ml_logic_classification.preprocess import pipeline_building
+from brain.ml_logic_classification.model import init_model_classification, compile_model_classification, init_densenet_classification
 from brain.registry import load_model, save_results, save_model
 
 
 
-def preprocess() :
+def preprocess_classification() :
 
     find_and_erase_duplicates()
 
@@ -38,7 +38,7 @@ def preprocess() :
     return (train_ds, val_ds, test_ds)
 
 
-def train(train_ds, val_ds) :
+def train_classification(train_ds, val_ds) :
 
 
     all_labels = []
@@ -47,8 +47,8 @@ def train(train_ds, val_ds) :
 
     n_classes = len(np.unique(all_labels))
     input_shape = (TARGET_SIZE[0], TARGET_SIZE[1], 3)
-    model = init_densenet(input_shape, n_classes)
-    model = compile_model(model)
+    model = init_densenet_classification(input_shape, n_classes)
+    model = compile_model_classification(model)
 
     es = [EarlyStopping(monitor='val_loss', patience=3, restore_best_weights=True)]
 
@@ -68,12 +68,12 @@ def train(train_ds, val_ds) :
 
     return history, model
 
-def evaluate(model, test_ds) :
+def evaluate_classification(model, test_ds) :
     print(model.evaluate(test_ds))
 
 
 
-def main() :
+def main_classification() :
 
     train_ds, val_ds, test_ds = preprocess()
     history, model = train(train_ds, val_ds)
@@ -81,9 +81,8 @@ def main() :
 
 if __name__ == '__main__':
     try:
-        preprocess()
-        train()
-        pred()
+        preprocess_classification()
+
     except:
         import sys
         import traceback
