@@ -9,12 +9,13 @@ from brain.ml_logic.preprocess import preprocess_for_inference
 
 
 app = FastAPI()
+app.state.model = load_model()
 
 
 @app.post("/predict")
 async def predict(file: UploadFile = File(...)):
     # Lire l'image
-    model = load_model()
+    #model = load_model()
     print("j'ai le model")
     img = Image.open(file.file).convert("RGB")
 
@@ -25,7 +26,7 @@ async def predict(file: UploadFile = File(...)):
 
 
     # Prédiction
-    preds = model.predict(img_array)
+    preds = app.state.model.predict(img_array)
     print("j'ai le pred")
     predicted_class = int(np.argmax(preds))
 

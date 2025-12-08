@@ -1,7 +1,8 @@
 raw_data/
 
 **/.DS_Store/
-
+.env/
+.env.yaml/
 abir.DS_Store/
 afallo.DS_Store/
 EDA_Victor/.DS_Store/
