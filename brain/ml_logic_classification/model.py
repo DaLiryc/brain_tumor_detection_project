@@ -7,7 +7,7 @@ from tensorflow.keras.applications import DenseNet121
 
 
 #inception transfer learning model
-def init_model(input_shape, num_classes):
+def init_model_classification(input_shape, num_classes):
 
     inception = InceptionV3(input_shape=input_shape,
                             weights='imagenet',
@@ -30,7 +30,7 @@ def init_model(input_shape, num_classes):
 
 
 
-def init_densenet(input_shape, num_classes):
+def init_densenet_classification(input_shape, num_classes):
     print("MODEL DENSENET")
     base_model = DenseNet121(
         input_shape=input_shape,
@@ -53,7 +53,7 @@ def init_densenet(input_shape, num_classes):
 
     return model
 
-def compile_model(model):
+def compile_model_classification(model):
     '''return a compiled model suited for the CIFAR-10 task'''
     model.compile(optimizer= 'adam',
                   loss='sparse_categorical_crossentropy',
