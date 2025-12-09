@@ -1,5 +1,5 @@
 raw_data/
-
+.DS_Store/
 **/.DS_Store/
 
 abir.DS_Store/
@@ -10,7 +10,7 @@ felix.DS_Store/
 brain/.DS_Store/
 raw_data/.DS_Store/
 notebooks/.DS_Store/
-.DS_Store/
+
 
 data/
 .python-version
