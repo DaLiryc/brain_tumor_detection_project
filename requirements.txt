@@ -35,3 +35,4 @@ uvicorn
 fastapi
 python-multipart
 tensorflow-addons
+nibabel
