@@ -4,7 +4,7 @@ import numpy as np
 from PIL import Image
 from brain.params import *
 from brain.registry import load_model
-from brain.ml_logic.preprocess import preprocess_for_inference
+from brain.ml_logic_classification.preprocess import preprocess_for_inference
 
 
 
