@@ -16,5 +16,10 @@ notebooks/.DS_Store/
 .DS_Store
 data/
 .python-version
-.env
-.env.yaml
+
+brain/__pycache__
+brain/ml_logic_classification/__pycache__
+brain/ml_logic_segmentation2D/__pycache__
+brain/ml_logic_segmentation3D/__pycache__
+brain/api/__pycache__
+
