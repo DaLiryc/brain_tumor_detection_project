@@ -16,5 +16,3 @@ notebooks/.DS_Store/
 .DS_Store
 data/
 .python-version
-
-.env
