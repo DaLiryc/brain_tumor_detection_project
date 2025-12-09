@@ -1,8 +1,8 @@
 raw_data/
 
 **/.DS_Store/
-.env/
-.env.yaml/
+.env
+.env.yaml
 abir.DS_Store/
 afallo.DS_Store/
 EDA_Victor/.DS_Store/
@@ -12,6 +12,6 @@ brain/.DS_Store/
 raw_data/.DS_Store/
 notebooks/.DS_Store/
 .DS_Store/
-
+.DS_Store
 data/
 .python-version
