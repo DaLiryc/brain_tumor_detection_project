@@ -3,13 +3,14 @@ import os
 import tensorflow as tf
 
 
-MODEL_TARGET = "gcs"
-DATA_TARGET = "gcs"
+MODEL_TARGET = "local"
+DATA_TARGET = "local"
 
 BUCKET_NAME = os.environ.get("BUCKET_NAME")
 GCP_PROJECT= os.environ.get("GCP_PROJECT")
 GCP_REGION =os.environ.get("GCP_REGION")
 INSTANCE = os.environ.get("INSTANCE")
+
 
 # --- classification ---
 # --- Duplicata managment ---
