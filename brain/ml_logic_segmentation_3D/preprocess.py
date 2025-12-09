@@ -48,7 +48,7 @@ def process_case(case_dir: Path):
     vols = []
 
     # Charger les 4 modalités dans l’ordre défini dans MODALITIES
-    for mod_name, pattern in MODALITIES:
+    for mod_name, pattern in MODALITIES_3D:
         fpath_list = list(case_dir.glob(pattern))
         assert len(fpath_list) == 1, f"Problème pour {mod_name} dans {case_dir}"
         fpath = fpath_list[0]
@@ -56,7 +56,7 @@ def process_case(case_dir: Path):
         nii = nib.load(str(fpath))
         vol = nii.get_fdata().astype(np.float32)
         vol = normalize_volume(vol)
-        vol = crop_or_pad(vol, TARGET_SHAPE)
+        vol = crop_or_pad(vol, TARGET_SHAPE_3D)
         vols.append(vol)
 
     # (H,W,D,4)
@@ -68,7 +68,7 @@ def process_case(case_dir: Path):
     seg_path = seg_path_list[0]
 
     seg = nib.load(str(seg_path)).get_fdata()
-    seg = crop_or_pad(seg, TARGET_SHAPE)
+    seg = crop_or_pad(seg, TARGET_SHAPE_3D)
     seg = seg.astype(np.uint8)   # labels {0,1,2,4}
     seg[seg == 4] = 3
 
