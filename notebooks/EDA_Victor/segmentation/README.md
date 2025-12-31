@@ -48,39 +48,19 @@ Pour exécuter correctement le notebook du modèle U-Net 2D, appliquez la métho
 
 **Métriques:** Dice coefficient et Dice loss (implémentation basée sur flatten + intersection).
 
-**Entraînement:** compilation avec Adam, callbacks (EarlyStopping, ReduceLROnPlateau, ModelCheckpoint), et visualisation de l'historique.
+**Entraînement:** compilation avec `Adam`, callbacks (`EarlyStopping`, `ReduceLROnPlateau`, `ModelCheckpoint`), et visualisation de l'historique.
 
-**Évaluation & Visualisation:** fonction predict_and_plot pour afficher image originale, vérité terrain et prédiction.
+**Évaluation & Visualisation:** fonction `predict_and_plot` pour afficher image originale, vérité terrain et prédiction.
 
 ## Données d'entrée
 
-* **Format actuel:** le notebook travaille sur des fichiers .tif (masques nommés avec _mask).
-* **Compatibilité JPG:** le pipeline lit les images via OpenCV (cv2.imread) — les images JPG/JPEG/PNG sont donc compatibles tant que :
-les images sont redimensionnées à IMG_SIZE (256x256 par défaut),
-l'image d'entrée a 3 canaux si le modèle attend RGB (ici IMG_CHANNELS=3),
-les masques doivent être en niveau de gris binaire (0/255) ou convertis/binarisés avant usage.
-Remarque pratique: si vos .tif étaient grayscale (1 canal) et le modèle entraîné sur 1 canal, il faudra convertir les JPG en niveaux de gris (cv2.cvtColor(img, cv2.COLOR_BGR2GRAY) puis reshape (H,W,1)).
-Comment tester rapidement la compatibilité JPG
+* **Format actuel:** le notebook travaille sur des fichiers `.tif` (masques nommés avec _mask).
 
-Copier quelques images JPG et leurs masques dans un dossier de test.
-Installer les dépendances (si besoin) :
-Exemple minimal (exécuter dans le notebook ou script Python) :
-Lancer model.predict(np.expand_dims(img,0)) ou créer un ColorContrastDataGenerator pointant vers les JPG.
-Fichiers importants
+* **Compatibilité JPG:** le pipeline lit les images via OpenCV (`cv2.imread`) — les images JPG/JPEG/PNG sont donc compatibles tant que :
+  * Les images sont redimensionnées à `IMG_SIZE` (256x256 par défaut),
+  * L'image d'entrée a 3 canaux si le modèle attend RGB (ici `IMG_CHANNELS=3`),
+  * Les masques doivent être en niveau de gris binaire (0/255) ou convertis/binarisés avant usage.
 
-Notebook principal: segmentation_u-net.ipynb
-Données: dossier racine utilisé kaggle_3m (à adapter selon ton arborescence)
-Checkpoint: unet_final_best.keras (nom de sauvegarde dans le notebook)
-Dépendances
+## Bonnes pratiques et limitations
 
-OpenCV (opencv-python), TensorFlow (>=2.x), NumPy, pandas, scikit-learn, matplotlib. Utiliser requirements.txt fourni.
-Bonnes pratiques et limitations
-
-Vérifier que masque et image ont le même nom/association.
-Si tu changes le nombre de canaux d'entrée (1 vs 3), adapte la définition du modèle (simple_unet_model) et le DataGenerator.
-Pour conversion de masse TIFF → JPG, garder la même résolution spatiale et préserver les masques en format sans pertes (PNG préféré pour masques binaires).
-Étapes suggérées (si tu veux que je le fasse)
-
-Ajouter une petite fonction utilitaire load_image(path, img_size, as_mask=False, to_gray=False) dans brain/ml_logic/preprocess.py.
-Ajouter une cellule dans le notebook montrant un test complet sur 8 images JPG (évaluer model.evaluate ou model.predict).
-Fournir un script autonome test_jpg_compatibility.py pour reproduire le test hors notebook.
+* Vérifier que masque et image ont le même nom/association.
