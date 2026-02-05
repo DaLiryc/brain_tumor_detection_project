@@ -323,12 +323,6 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 - **Le Wagon Brainers** - Original project team
 - **TensorFlow/Keras Community** - For excellent deep learning tools
 
-## 📧 Contact
-
-- **Author**: Le Wagon Brainers
-- **Email**: contact@lewagon.org
-- **Repository**: https://github.com/DaLiryc/brain_tumor_detection_project
-
 ## ⚠️ Disclaimer
 
 This project is for educational and research purposes only. The models and predictions should not be used for actual medical diagnosis or treatment decisions. Always consult qualified healthcare professionals for medical advice.
